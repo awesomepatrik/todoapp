@@ -7,10 +7,17 @@ use Livewire\Component;
 
 class Login extends Component
 {
-    protected  $listeners = ['closeAlert'];
+    protected $listeners = ['closeAlert'];
 
-    public $email, $password;
-    public $message = '';
+    public $email;
+    public $password;
+    protected $rules = [
+        'email' => 'required|email',
+        'password' => 'required|min:6'
+    ];
+
+
+    public $errorMessage = '';
     public $error = false;
 
     public function render()
@@ -21,11 +28,7 @@ class Login extends Component
 
     public function login()
     {
-        $validatedFields = $this->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
+        $this->validate();
 
         $credentials = array(
             'email' => $this->email,
@@ -34,11 +37,11 @@ class Login extends Component
 
         if (Auth::attempt($credentials)) {
             $this->error = false;
-            $this->message = 'You are Login successful';
+            $this->errorMessage = 'You are Login successful';
             return redirect("todo-list");
         } else {
             $this->error = true;
-            $this->message = 'email and password are wrong.';
+            $this->errorMessage = 'email and password are wrong.';
         }
     }
 

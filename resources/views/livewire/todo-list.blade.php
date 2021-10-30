@@ -17,7 +17,7 @@
 
         <template x-if="isEdit">
             <div class="flex items-center text-sm mt-2">
-                <button @click="$refs.addTask.focus()">
+                <button>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                          class=" w-4 h-4 text-gray-600 fill-current"
                          viewBox="0 0 48 48"
@@ -36,7 +36,7 @@
 
         <template x-if="isEdit">
             <div class="flex justify-end items-center" >
-                <button class="bg-red-400 text-white p-2 my-3" @click="isEdit = false">Cancel</button>
+                <button class="bg-red-400 text-white p-2 my-3" @click="cancelUpdate">Cancel</button>
                 <button class="bg-green-400 text-white p-2 my-3 ml-2" @click="updateTask">Save</button>
             </div>
         </template>
@@ -97,7 +97,7 @@
                 this.isEdit = false;
             },
             cancelUpdate(){
-                this.task = '';
+                this.task ='';
                 this.isEdit = false;
             }
         };

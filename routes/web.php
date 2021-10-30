@@ -15,17 +15,9 @@ use App\Http\Controllers\GithubController;
 |
 */
 
-Route::get('/',  function(){
-    return view('pages.login');
-})->name('welcome');
-
-Route::get('/register', function(){
-    return view('pages.register');
-});
-
-Route::get('/todo-list', function(){
-    return view('pages.todo-list');
-})->name('todo-list');
+Route::get('/',  \App\Http\Livewire\Login::class)->name('welcome');
+Route::get('/register', \App\Http\Livewire\Register::class)->name('register');
+Route::get('/todo-list', \App\Http\Livewire\TodoList::class)->name('todo-list');
 
 Route::get('/logout', function(){
     \Illuminate\Support\Facades\Auth::logout();

@@ -12,7 +12,14 @@ class Register extends Component
     protected $listeners = ['closeAlert'];
 
     public $name, $email, $password, $confirm_password ;
-    public $message = '';
+
+    protected $rules = [
+        'name' => 'required',
+        'email' => 'required|email',
+        'password' => 'min:6|required_with:confirm_password|same:confirm_password',
+        'confirm_password' => 'min:6'
+    ];
+    public $errorMessage = '';
     public $error = false;
 
     public function render()
@@ -29,25 +36,16 @@ class Register extends Component
 
     public function register(){
 
-        try{
 
-            $validateFields = $this->validate([
-                'name' => 'required',
-                'email' => 'required|email',
-                'password' => 'required',
-            ]);
+        $this->validate();
 
-            $encryptPassword = Hash::make($this->password);
+        $encryptPassword = Hash::make($this->password);
 
-            User::create(['name' => $this->name, 'email' => $this->email,'password' => $encryptPassword]);
+        User::create(['name' => $this->name, 'email' => $this->email,'password' => $encryptPassword]);
 
-            $this->login();
-            $this->error = false;
+        $this->login();
+        $this->error = false;
 
-        }catch(\Exception $exception){
-            $this->error = true;
-            $this->message = "Error in registration!";
-        }
 
     }
 

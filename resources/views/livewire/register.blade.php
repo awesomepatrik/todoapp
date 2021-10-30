@@ -10,7 +10,7 @@
                 </h1>
 
                 @if($error)
-                    <livewire:alert-message-error :message="$message"/>
+                    <livewire:alert-message-error :message="$errorMessage"/>
                 @endif
 
                 <div class="py-2 text-left">
@@ -19,6 +19,7 @@
                            placeholder="Name"
                            wire:model="name"
                     />
+                    @error('name') <span class="error text-red-600">{{ $message }}</span> @enderror
                 </div>
                 <div class="py-2 text-left">
                     <input type="email"
@@ -26,6 +27,7 @@
                            placeholder="Email"
                            wire:model="email"
                     />
+                    @error('email') <span class="error text-red-600">{{ $message }}</span> @enderror
                 </div>
                 <div class="py-2 text-left">
                     <input type="password"
@@ -33,6 +35,7 @@
                            placeholder="Password"
                            wire:model="password"
                     />
+                    @error('password') <span class="error text-red-600">{{ $message }}</span> @enderror
                 </div>
                 <div class="py-2 text-left">
                     <input type="password"
@@ -40,6 +43,7 @@
                            placeholder="Confirm Password"
                            wire:model="confirm_password"
                     />
+                    @error('confirm_password') <span class="error text-red-600">{{ $message }}</span> @enderror
                 </div>
                 <div class="py-2">
                     <button type="submit"

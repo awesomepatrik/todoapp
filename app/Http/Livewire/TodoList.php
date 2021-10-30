@@ -10,7 +10,7 @@ class TodoList extends Component
 {
 
     public $tasks;
-    public  $task;
+    public $task;
 
     public $errorFlag, $errorMessage;
 
@@ -18,6 +18,10 @@ class TodoList extends Component
     {
         $this->getTasks();
         return view('livewire.todo-list');
+    }
+
+    public function resetFields(){
+        $this->reset();
     }
 
     private function getTasks(){

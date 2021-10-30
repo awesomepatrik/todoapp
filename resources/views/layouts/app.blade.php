@@ -15,7 +15,7 @@
         @livewire('navbar')
     @endif
     <div class="bg-gray-200 text-gray-800 flex items-center justify-center h-screen">
-        @yield('content')
+        {{$slot}}
     </div>
 
 
