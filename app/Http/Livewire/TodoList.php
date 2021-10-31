@@ -11,6 +11,7 @@ class TodoList extends Component
 
     public $tasks;
     public $task;
+    public $isEdit = false;
 
     public $errorFlag, $errorMessage;
 
